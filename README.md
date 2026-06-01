@@ -74,7 +74,6 @@ classDiagram
 
 ### 2. Diagrama de Casos de Uso (Mermaid)
 ```mermaid
-gestureDiagram
 graph TD
     Jugador((Actor: Jugador))
     
