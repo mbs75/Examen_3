@@ -123,11 +123,14 @@ graph TD
 * **Rol Asignado**: Arquitecto de Software Senior y Líder Técnico Experto en Desarrollo de Motores Gráficos en Java.
 
 ### Muestra de Prompts Exactos
-> **Prompt 1 (Diseño de la estructura básica)**:  
-> *"Actúa como un arquitecto de software senior. Necesito diseñar la lógica de un motor de videojuego 2D de carreras por consola en Java utilizando un número estricto máximo de 6 clases. Debe tener una clase abstracta EntidadVideojuego con propiedades espaciales (x,y,w,h) y herencia para Coches e Ítems. Incluye encapsulación completa y un GestorEntradas analizando comandos de texto tipo 'ACELERAR' o 'INICIAR'. No uses frameworks gráficos."*
+> **Prompt 1 (Generación de la arquitectura y lógica inicial)**:  
+> *"Se pide diseñar e implementar de forma asistida por IA la lógica interna de control (sin interfaz gráfica) de un núcleo para un videojuego tipo scroll o cuadrícula 2D. La temática del juego son carreras de coches en las que puedes obtener objetos que te hacen ir más rápido o más lento. Respeta la restricción máxima de 6 clases (Main, MotorJuego, EntidadVideojuego, GestorEntradas, Coche e Item) y añade las funciones avanzadas de un detector matemático de colisiones AABB y comportamiento dinámico de la IA enemiga por distancia. Detalla cada paso de Git-Flow y el README.md."*
 
-> **Prompt 2 (Lógicas avanzadas de colisión e IA)**:  
-> *"Asísteme ahora para añadir lógica móvil avanzada en la clase MotorJuego. Añade un detector matemático de colisiones usando el algoritmo Axis-Aligned Bounding Box (AABB) para ver si los coches pisan los ítems de la calzada, modificando sus velocidades. Además, implementa un comportamiento NPC para los coches rivales: si están lejos patrullan, pero si la distancia relativa en Y con el jugador es menor de 50 metros, entran en estado perseguir de forma agresiva."*
+> **Prompt 2 (Depuración técnica y resolución de bloqueos)**:  
+> *"Al intentar compilar en la Fase 2, la clase GestorEntradas pasa por parámetro el objeto MotorJuego, el cual todavía no se ha desarrollado formalmente porque pertenece a las funciones avanzadas de la Fase 3. Además, Git en PowerShell no reconoce las rutas cortas de los archivos y me arroja un error 'pathspec did not match any files'. ¿Cómo reestructuramos el plan para crear un esqueleto base y solucionar las rutas exactas de los commits sin violar las restricciones?"*
+
+> **Prompt 3 (Corrección del renderizado en GitHub)**:  
+> *"La sección del diagrama de casos de uso en el README.md me muestra un recuadro de error que dice 'Unable to render rich display: No diagram type detected matching given configuration for text: gestureDiagram'. ¿Cómo corrijo la sintaxis del bloque de código Markdown para que GitHub renderice el esquema de Mermaid correctamente de forma nativa?"*
 
 ### Control de Errores de la IA
 Durante la sesión de co-programación, la IA incurrió en un problema de **sobre-ingeniería y violación de restricciones**. El modelo intentó inyectar interfaces de escucha complejas (`InputListener`), un sistema de hilos concurrentes en tiempo real para el bucle y dividió las entidades en archivos independientes para cada tipo de ítem (*Aceite*, *Moneda*, *Turbo*), superando la barrera obligatoria de **máximo 6 clases**.
