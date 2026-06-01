@@ -17,6 +17,9 @@ El diseño se rige bajo una arquitectura orientada a objetos minimalista estruct
 
 ---
 
+## Ejecución del Main
+![Captura de la Consola](consola.png)
+
 ## 📊 Diagramas de Arquitectura UML
 
 ### 1. Diagrama de Clases (Mermaid)
