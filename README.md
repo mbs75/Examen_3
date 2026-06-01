@@ -134,6 +134,22 @@ Durante la sesión de co-programación, la IA incurrió en un problema de **sobr
 
 * **Instrucción de rectificación manual**: *"Alto. Estás violando la restricción de diseño de la rúbrica. No puedo superar las 6 clases totales en el proyecto. Elimina las clases individuales de ítems y unifícalas en una única entidad paramétrica llamada `Item` que use una propiedad de fuerza/efecto para alterar la velocidad. Borra la concurrencia nativa de Java y mantén el ciclo loop puramente secuencial simulado mediante llamadas explícitas al método `actualizar()` en la clase Main."* La IA corrigió de inmediato el código compactándolo al formato reglamentario presentado.
 
+## 🛠️ Control de Errores y Gestión de Incidencias
+
+Durante el desarrollo secuencial del proyecto siguiendo la metodología Git-Flow, se identificaron y solventaron los siguientes bloqueos técnicos críticos:
+
+### 1. Conflicto de Dependencias Cíclicas (Fase 2)
+* **Incidencia:** Al implementar la clase `GestorEntradas` en la rama `feature/motor-core`, el entorno de desarrollo (IDE) arrojó errores de compilación debido a que el método requería pasar por parámetro el objeto `MotorJuego`. Según la planificación estricta, la lógica avanzada de este motor no debía integrarse hasta la Fase 3 (`feature/avanzadas`).
+* **Solución:** Se aplicó un patrón de diseño basado en desacoplamiento de arquitectura generando un **esqueleto base (Skeleton)** temporal para `MotorJuego.java`. Este cascarón incluyó únicamente los atributos mínimos de control de estado y listas de entidades para permitir la compilación exitosa en la Fase 2, postergando e inyectando la lógica matemática compleja (colisiones e IA) en la rama correspondiente de la Fase 3.
+
+### 2. Discrepancia en Árbol de Rutas Locales y del IDE
+* **Incidencia:** Durante la ejecución de comandos Git en la terminal, se presentaron fallos de tipo `fatal: pathspec did not match any files` al intentar registrar archivos con la ruta relativa del IDE (`src/motor/...`). 
+* **Solución:** Se realizó una auditoría del repositorio mediante comandos de rastreo (`git status` y `ls`), detectando que la raíz del repositorio local mapeaba el paquete `motor` en un nivel superior al interpretado originalmente. Se reestructuraron los comandos de indexación utilizando rutas absolutas relativas al directorio raíz (`motor/src/motor/...`), garantizando Commits limpios y sin pérdida de metadatos.
+
+### 3. Desincronización de Portada (Sincronización Web/Local)
+* **Incidencia:** Al inicializar el repositorio remoto con un archivo `README.md` autogenerado y editarlo en la plataforma en la nube, se provocó una divergencia con el historial de la máquina local, impidiendo la integración directa de las ramas y provocando la pérdida temporal del archivo tras un formateo de empuje forzado (`--force`).
+* **Solución:** Se procedió a regenerar el entorno físico inyectando directamente los elementos del documento Markdown a nivel de sistema de archivos local (`New-Item`), reestructurando el código nativo de renderizado Mermaid (corrigiendo la etiqueta descriptiva por la sintaxis estándar de diagramas `graph TD`). Esto permitió sincronizar con éxito el repositorio de producción, eliminando los errores de visualización de bloques en GitHub.
+
 ### Reflexión Crítica
 * **Ventajas**: Acelera drásticamente el proceso de andamiaje y la escritura de código repetitivo (*boilerplate code*), como la inserción limpia de getters, setters y la maquetación en sintaxis estructurada de Mermaid para los diagramas de documentación de requisitos.
 * **Peligros**: El programador puede perder el hilo del control de la lógica si acepta ciegamente el código del modelo. Las IA tienden a la sobre-ingeniería de patrones de diseño corporativos (como el patrón Factory o Observer complejo) que rompen los límites académicos simples, exigiendo supervisión crítica constante.
